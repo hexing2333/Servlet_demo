@@ -18,26 +18,18 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String username=request.getParameter("user");
         String password=request.getParameter("password");
-        System.out.println(username);
-        System.out.println(password);
-        Integer isLogin = 0;
-        if(username.equals("admin")&&password.equals("123456")){
+        Integer isLogin = 0;//isLogin初始为0代表未登录
+        if(username.equals("admin")&&password.equals("123456")){//登录用户名和密码正确，将isLogin置为1
             isLogin=1;
             out.println("<text>");
             out.println("success");
             out.println("</text></br>");
         }
-        session.setAttribute("isLogin",isLogin);
-        Enumeration e=session.getAttributeNames();
-        while (e.hasMoreElements()){
-            String name=(String)e.nextElement();
-            String value=session.getAttribute(name).toString();
-            out.println(name+"="+value);
-        }
+        session.setAttribute("isLogin",isLogin);//设置session中的isLogin为1
+        out.println("isLogin:");
+        out.println(session.getAttribute("isLogin"));
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out=response.getWriter();
-        out.println("123");
+        doPost(request,response);
     }
 }

@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "doneServlet")
 public class doneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class doneServlet extends HttpServlet {
         Integer b=Integer.valueOf(request.getParameter("b"));
         Integer c=a+b;
         PrintWriter out=response.getWriter();
-        out.println("<p style='font-size:30px;font-weight:bold;'>");
+        out.println("<p style='font-size:30px;font-weight:bold;'>The answer is:");
         out.println(c);
         out.println("</p>");
 

@@ -13,26 +13,23 @@ import java.util.Enumeration;
 @WebServlet(name = "addServlet")
 public class addServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         System.out.println("enter");
-        String para=request.getPathInfo();
-        int a_index=para.indexOf("a");
-        int b_index=para.indexOf("b");
         if(request.getParameter("a")!=null&&request.getParameter("b")!=null){
             String a=request.getParameter("a");
             String b=request.getParameter("b");
             System.out.println(a);
             System.out.println(b);
-            if(isNumberByType(a)&&isNumberByType(b)){
+            if(isNumberByType(a)&&isNumberByType(b)){//如果a和b都是有效数字
                 System.out.println("Valid");
-                request.setAttribute("a",Integer.valueOf(a));
+                request.setAttribute("a",Integer.valueOf(a));//设置a和b两个变量
                 request.setAttribute("b",Integer.valueOf(b));
-                request.getRequestDispatcher("/doneServlet").forward(request,response);
+                request.getRequestDispatcher("/doneServlet").forward(request,response);//转发给doneServlet
             }
         }
         else {
